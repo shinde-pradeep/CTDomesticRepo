@@ -1,0 +1,188 @@
+
+<style>
+
+
+#container {
+	BORDER-RIGHT: #000000 1px solid;
+	BORDER-TOP: #000000 1px solid;
+	BACKGROUND: #131313;
+	MARGIN: 0px auto;
+	BORDER-LEFT: #000000 1px solid;
+	BORDER-BOTTOM: #000000 1px solid;
+	TEXT-ALIGN: center;
+	 background: url(images/buttons.png) center top;
+	 FONT-WEIGHT: bold;
+	 FONT-SIZE:20;
+}
+
+P {
+	BACKGROUND: url(remorabg.gif) no-repeat center 50%;
+	MARGIN: 1em 2em
+}
+
+P#smurf {
+	FONT-WEIGHT: bold;
+	BACKGROUND: none transparent scroll repeat 0% 0%;
+	COLOR: #7c6240;
+	FONT-STYLE: italic;
+	TEXT-ALIGN: center
+}
+
+#smurf STRONG {
+	FONT-SIZE: 1.2em;
+	COLOR: black
+}
+
+#nav {
+	BORDER-RIGHT: #000000 1px solid;
+	PADDING-RIGHT: 0px;
+	BORDER-TOP: #000000  1px solid;
+	PADDING-LEFT: 1px;
+	FONT-SIZE:24;
+	FONT-WEIGHT: bold;
+	BACKGROUND: #131313;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px 0px 0px;
+	BORDER-LEFT: #000000 1px solid;
+	LINE-HEIGHT: 1;
+	PADDING-TOP: 0px;
+	BORDER-BOTTOM: #000000 1px solid;
+	LIST-STYLE-TYPE: none;
+	 background: url(images/buttons.png) center top;
+}
+
+#nav UL {
+	BORDER-RIGHT: #000000 0px solid;
+	PADDING-RIGHT: 0px;
+	BORDER-TOP: #000000 1px solid;
+	PADDING-LEFT: 0px;
+	FONT-WEIGHT: bold;
+	BACKGROUND: #131313;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px 0px 1em;
+	BORDER-LEFT: #000000 0px solid;
+	LINE-HEIGHT: 1;
+	FONT-SIZE:24;
+	PADDING-TOP: 0px;
+	BORDER-BOTTOM: #000000 1px solid;
+	LIST-STYLE-TYPE: none
+	 background: url(images/buttons.png) center top no-repeat;
+}
+
+#nav A {
+	PADDING-RIGHT: .5em;
+	DISPLAY: block;
+	PADDING-LEFT: .5em;
+	PADDING-BOTTOM: 0.25em;
+	COLOR: #ffffff;
+	PADDING-TOP: 0.25em;
+	TEXT-DECORATION: none
+	FONT-SIZE:24;
+	 background: url(images/buttons.png) center top no-repeat;
+}
+
+#nav LI {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0px
+	 background: url(images/buttons.png) center top no-repeat;
+		FONT-WEIGHT: bold;
+		FONT-SIZE:24;
+}
+
+#nav LI UL {
+	PADDING-LEFT: 0em;
+	PADDING-RIGHT: 0em;
+	FONT-WEIGHT: bold;
+	LEFT: -999em;
+	FONT-SIZE:24;
+	BORDER-BOTTOM: #000000 0px;;
+	BORDER-LEFT: #000000 .05em solid;;
+	BORDER-RIGHT: #000000 .05em solid;;
+	BORDER-TOP: #000000 0px;
+	WIDTH: 14em;
+	POSITION: absolute;
+	HEIGHT: auto;
+	 background: url(images/buttons.png) center top no-repeat;
+}
+
+#nav LI LI {
+	BORDER-BOTTOM: #000000 1px solid;
+	PADDING-TOP: 0em;
+	PADDING-BOTTOM: 0em;
+	WIDTH: 14em;
+	BORDER-BOTTOM: #6464641px;
+	 background: url(images/buttons.png) center top no-repeat;
+	 FONT-SIZE:24;
+}
+
+#nav LI UL A {
+	BACKGROUND: #FBF6F2;
+	PADDING-RIGHT: .25em;
+	DISPLAY: block;
+	PADDING-LEFT: .25em;
+	PADDING-BOTTOM: 0.4em;
+	COLOR: #131313;
+	PADDING-TOP: 0.4em;
+	TEXT-DECORATION: none
+	 background: url(images/buttons.png) center top no-repeat;
+	 FONT-SIZE:24;
+}
+
+#nav LI UL A:hover {
+	BACKGROUND: #131313;
+	COLOR: #ffffff;
+}
+
+#nav LI.sfhover UL {
+	LEFT: auto
+}
+
+#nav LI:hover UL {
+	LEFT: auto
+}
+
+#scaffolding {
+	BORDER-RIGHT: #000099 0px solid;
+	BORDER-TOP: #000099 1px solid;
+	BACKGROUND: url(header_bg.gif) white no-repeat;
+	MARGIN: 1em 0px 0px;
+	BORDER-LEFT: #000099 0px solid;
+	BORDER-BOTTOM: #000099 0px solid;
+	HEIGHT: 70px
+}
+
+#scaffolding A {
+	DISPLAY: block;
+	BACKGROUND: url(hdlogo_flip2.gif) no-repeat 181px 0px;
+	TEXT-INDENT: -999em;
+	HEIGHT: 70px;
+	TEXT-DECORATION: none
+}
+
+#scaffolding A:hover {
+	BACKGROUND-POSITION: 181px -70px
+}
+
+UL.nav IFRAME {
+	Z-INDEX: -1;
+	FILTER: progid :         DXImageTransform .         Microsoft .    
+		    Alpha(style =         0, opacity =         0);
+	LEFT: -0.25em;
+	POSITION: absolute;
+	TOP: -0.25em
+}
+
+HTML UL.nav LI {
+	Z-INDEX: 201
+}
+
+.tdBgClr {
+	background-color: #e55c11;
+}
+
+</style>

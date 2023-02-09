@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="baseLayout" template="/common/BaseLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/common/Header.jsp" />
+		<put-attribute name="menu" value="" />
+		<put-attribute name="menuDropDown" value="" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/common/Footer.jsp" />
+	</definition>
+
+	<definition name="adminMenu" extends="baseLayout">
+		<put-attribute name="menu" value="/admin/adminMenu.jsp" />
+		<put-attribute name="menuDropDown" value="/admin/adminMenuDropDown.jsp" />
+	</definition>
+	
+	<definition name="popUp" template="/common/PopUpLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="" />
+	</definition>
+	<definition name="/GuestOffers.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Manage Guest Jmessa" />
+		<put-attribute name="body" value="/common/manageGuestOffer.jsp" />
+	</definition>
+	<definition name="tradersMenu" extends="baseLayout">
+		<put-attribute name="menu" value="/traders/tradersMenu.jsp" />
+		<put-attribute name="menuDropDown" value="/traders/tradersMenuDropDown.jsp" />
+	</definition>
+
+	<definition name="producersMenu" extends="baseLayout">
+		<put-attribute name="menu" value="/producers/producersMenu.jsp" />
+		<put-attribute name="menuDropDown" value="/producers/producersMenuDropDown.jsp" />
+	</definition>
+
+	<definition name="/adminHome.tiles" extends="adminMenu">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body" value="/admin/adminHome.jsp" />
+	</definition>
+
+	<definition name="/tradersHome.tiles" extends="tradersMenu">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body" value="/traders/tradersHome.jsp" />
+	</definition>
+
+	<definition name="/producersHome.tiles" extends="producersMenu">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body" value="/producers/producersHome.jsp" />
+	</definition>
+<!-- $$$$$$Participating Company Start -->
+
+	<definition name="/alluser.tiles" extends="adminMenu">
+		<put-attribute name="title" value="AllUser" />
+		<put-attribute name="body" value="/admin/AllUser.jsp" />
+	</definition>
+	<definition name="/alluser1.tiles" extends="adminMenu">
+		<put-attribute name="title" value="User" />
+		<put-attribute name="body" value="/admin/AllUser1.jsp" />
+	</definition>
+	<definition name="/participatingCompany.tiles" extends="adminMenu">
+		<put-attribute name="title" value="Participating Company" />
+		<put-attribute name="body" value="/admin/participatingCompany.jsp" />
+	</definition>
+	<definition name="/participatingCompanyReport.tiles" extends="adminMenu">
+		<put-attribute name="title" value="Participating Company" />
+		<put-attribute name="body" value="/admin/participatingCompanyReport.jsp" />
+	</definition>
+	
+	<definition name="/mentainparticipatingCompany.tiles" extends="popUp">
+		<put-attribute name="title" value="Manage Company Jmessa" />
+		<put-attribute name="body" value="/admin/mentainParticipatingCompany.jsp" />
+	</definition>
+	
+	<definition name="/SendNotification.tiles" extends="popUp">
+		<put-attribute name="title" value="Send Notification" />
+		<put-attribute name="body" value="/admin/sendNotification.jsp" />
+	</definition>
+	
+	<!-- $$$$$$Participating Company End -->
+	<!-- ****** Trader User Start***** -->
+	<definition name="/traders.tiles" extends="tradersMenu">
+		<put-attribute name="title" value="Trader Form" />
+		<put-attribute name="body" value="/traders/manageTraderUser.jsp" />
+	</definition>
+	
+	<definition name="/mentainTraderUser.tiles" extends="popUp">
+		<put-attribute name="title" value="Manage Trader Jmessa" />
+		<put-attribute name="body" value="/traders/mentainTraderUser.jsp" />
+	</definition>
+	<definition name="/mentainAdminUser.tiles" extends="popUp">
+		<put-attribute name="title" value="Manage Admin Jmessa" />
+		<put-attribute name="body" value="/admin/mentainAdminUser.jsp" />
+	</definition>
+	
+	<!-- ****** Trader User End***** -->
+	
+	<!-- ****** Producer User Start***** -->
+	<definition name="/producers.tiles" extends="producersMenu">
+		<put-attribute name="title" value="producers Form" />
+		<put-attribute name="body" value="/producers/manageProducerUser.jsp" />
+	</definition>
+	<definition name="/producersUser.tiles" extends="producersMenu">
+		<put-attribute name="title" value="producers Form" />
+		<put-attribute name="body" value="/producers/participatingproducer.jsp" />
+	</definition>
+	 <definition name="/participatingProducer.tiles" extends="adminMenu">
+	<put-attribute name="title" value="Participating Producer" />
+		<put-attribute name="body" value="/admin/participatingproducer.jsp" />
+	</definition>
+	<definition name="/producerReport.tiles" extends="adminMenu">
+	<put-attribute name="title" value="Participating Producer" />
+		<put-attribute name="body" value="/admin/producerReport.jsp" />
+	</definition>
+	 
+	
+	<!-- <definition name="/participatingProducer.tiles" extends="adminMenu">
+		<put-attribute name="title" value="Participating Producer" />
+		<put-attribute name="body" value="/admin/manageProducerMaster.jsp" />
+	</definition>-->  
+	
+	<definition name="/uploadProducerExcel.tiles" extends="popUp">
+		<put-attribute name="title" value="Manage Producer Jmessa" />
+		<put-attribute name="body" value="/admin/uploadProducerExcel.jsp" />
+	</definition> 
+	<definition name="/uploadFarmExcel.tiles" extends="popUp">
+		<put-attribute name="title" value="Manage Producer Jmessa" />
+		<put-attribute name="body" value="/admin/uploadFarmExcel.jsp" />
+	</definition> 
+	
+	<definition name="/mentainProducerUser.tiles" extends="popUp">
+		<put-attribute name="title" value="Manage producers Jmessa" />
+		<put-attribute name="body" value="/producers/mentainProducerUser.jsp" />
+	</definition>
+	<!-- ****** Producer User End***** -->
+	<!-- ****** Producer Transaction Start***** -->
+	<definition name="/producerTransaction.tiles" extends="producersMenu">
+		<put-attribute name="title" value="producers Form" />
+		<put-attribute name="body" value="/producers/manageProducerTransaction.jsp" />
+	</definition>
+	<definition name="/transactionProducer.tiles" extends="producersMenu">
+		<put-attribute name="title" value="producers Form" />
+		<put-attribute name="body" value="/producers/producerTransaction.jsp" />
+	</definition>
+	<!-- ****** Producer Transaction End***** -->
+	<!-- ****** Producer Offer Start***** -->
+	<definition name="/producersOffer.tiles" extends="producersMenu">
+		<put-attribute name="title" value="producers Form" />
+		<put-attribute name="body" value="/producers/manageProducersOffer.jsp" />
+	</definition>
+	
+	<definition name="/mentainProducerOffer.tiles" extends="popUp">
+		<put-attribute name="title" value="Manage producers Jmessa" />
+		<put-attribute name="body" value="/producers/mentainProducersOffers.jsp" />
+	</definition>
+	<!-- ****** Producer Offer End***** -->
+	<!--  My Transation  Start-->
+		<definition name="/transaction.tiles" extends="tradersMenu">
+		<put-attribute name="title" value="Transaction Form" />
+		<put-attribute name="body" value="/traders/manageTransaction.jsp" />
+	</definition>
+	<definition name="/tradersTransactionReport.tiles" extends="tradersMenu">
+		<put-attribute name="title" value="Transaction Form" />
+		<put-attribute name="body" value="/traders/transactionReport.jsp" />
+	</definition>
+	<definition name="/transaction1.tiles" extends="adminMenu">
+		<put-attribute name="title" value="Transaction Form" />
+		<put-attribute name="body" value="/admin/CurrentTransaction.jsp" />
+	</definition>
+	<definition name="/transactionReport.tiles" extends="adminMenu">
+		<put-attribute name="title" value="Transaction Report" />
+		<put-attribute name="body" value="/admin/transactionReport.jsp" />
+	</definition>
+	<definition name="/transaction2.tiles" extends="adminMenu">
+		<put-attribute name="title" value="Transaction Form" />
+		<put-attribute name="body" value="/admin/AchievedTransaction.jsp" />
+	</definition>
+	
+	<definition name="/mentainTransaction.tiles" extends="popUp">
+		<put-attribute name="title" value="Manage Transaction Jmessa" />
+		<put-attribute name="body" value="/traders/mentainTraceabilityRegister.jsp" />
+	</definition>
+	<definition name="/updateTransaction.tiles" extends="popUp">
+		<put-attribute name="title" value="Manage Transaction Jmessa" />
+		<put-attribute name="body" value="/traders/updateTraceabilityRegister.jsp" />
+	</definition>
+	
+	<!--  My Transation End -->
+	<!-- $$$$$  Trader Offers Start $$$$$$$$ -->
+	
+	<definition name="/offers.tiles" extends="tradersMenu">
+		<put-attribute name="title" value="Offer Form" />
+		<put-attribute name="body" value="/traders/manageTraderOffer.jsp" />
+	</definition>
+	
+	<definition name="/mentainTraderOffers.tiles" extends="popUp">
+		<put-attribute name="title" value="Manage Offer Jmessa" />
+		<put-attribute name="body" value="/traders/mentainTraderOffers.jsp" />
+	</definition>
+	
+	<!-- $$$$$$$ Trader Offers End $$$$$$ -->
+	<!--<definition name="/producers.tiles" extends="producersMenu">
+		<put-attribute name="title" value="Producer Form" />
+		<put-attribute name="body" value="/producers/prodReg.jsp" />
+	</definition>
+
+	--><definition name="/customer.success.tiles" extends="adminMenu">
+		<put-attribute name="title" value="Customer Added" />
+		<put-attribute name="body" value="/common/SuccessCustomer.jsp" />
+	</definition>
+
+	<definition name="/managemaster.tiles" extends="adminMenu">
+		<put-attribute name="title" value="Manage Master" />
+		<put-attribute name="body" value="/admin/ManageMaster.jsp" />
+	</definition>
+
+           <!-- *********product Start*********** -->
+  
+	<definition name="/loadProduct.tiles" extends="adminMenu">
+		<put-attribute name="title" value="Manage Products" />
+		<put-attribute name="body" value="/admin/manageProducts.jsp" />
+	</definition>
+
+	<definition name="/mentainProduct.tiles" extends="popUp">
+		<put-attribute name="title" value="Manage Products Jmessa" />
+		<put-attribute name="body" value="/admin/mentainProduct.jsp" />
+	</definition>
+
+			<!-- *********Region Start*********** -->
+	
+	
+	<definition name="/loadRegion.tiles" extends="adminMenu">
+		<put-attribute name="title" value="Manage Region" />
+		<put-attribute name="body" value="/admin/sellingRegionSelect.jsp" />
+	</definition>
+	<definition name="/mentainRegion.tiles" extends="popUp">
+		<put-attribute name="title" value="Manage Region Jmessa" />
+		<put-attribute name="body" value="/admin/sellingRegionInsert.jsp" />
+	</definition>
+		<!--  Region End -->
+		
+		<!-- *********State Start*********** -->
+	
+	<definition name="/loadState.tiles" extends="adminMenu">
+		<put-attribute name="title" value="Manage State" />
+		<put-attribute name="body" value="/admin/manageState.jsp" />
+	</definition>
+	<definition name="/mentainState.tiles" extends="popUp">
+		<put-attribute name="title" value="Manage State Jmessa" />
+		<put-attribute name="body" value="/admin/mentainState.jsp" />
+	</definition>
+		<!--  State End -->
+		
+		<!-- *********Register Start*********** -->
+	
+	<definition name="/loadRegisters.tiles" extends="adminMenu">
+		<put-attribute name="title" value="Manage Register" />
+		<put-attribute name="body" value="/admin/manageRegister.jsp" />
+	</definition>
+	<definition name="/mentainRegister.tiles" extends="popUp">
+		<put-attribute name="title" value="Manage State Jmessa" />
+		<put-attribute name="body" value="/admin/insertCompanyRegister.jsp" />
+	</definition>
+		<!--  Register End -->
+		
+		<!-- ***********  loadDestinationports ********* -->
+	
+	<definition name="/loadDestinationPort.tiles" extends="adminMenu">
+		<put-attribute name="title" value="Manage Ports" />
+		<put-attribute name="body" value="/admin/manageDestinationPort.jsp" />
+	</definition>	
+	<definition name="/loadPort.tiles" extends="adminMenu">
+		<put-attribute name="title" value="Manage Ports" />
+		<put-attribute name="body" value="/admin/manageLoadPort.jsp" />
+	</definition>	
+		
+	<definition name="/mentainDestinationPort.tiles" extends="popUp">
+		<put-attribute name="title" value="Manage Ports Jmessa" />
+		<put-attribute name="body" value="/admin/mentainDestinationPort.jsp" />
+	</definition>	
+		
+		
+		    <!-- Origin Start -->
+	
+	<definition name="/loadOrigin.tiles" extends="adminMenu">
+		<put-attribute name="title" value="Manage Origin" />
+		<put-attribute name="body" value="/admin/manageOrigin.jsp" />
+	</definition>
+	<definition name="/mentainOrigin.tiles" extends="popUp">
+		<put-attribute name="title" value="Manage Origin Jmessa" />
+		<put-attribute name="body" value="/admin/mentainOrigin.jsp" />
+	</definition>
+	
+	              <!-- my profile company form     -->
+
+  <definition name="/myProfile.tiles" extends="tradersMenu">
+	<put-attribute name="body" value="/traders/MyProfile.jsp" />
+	</definition>
+  <definition name="/traderProfile.tiles" extends="producersMenu">
+	<put-attribute name="body" value="/producers/MyProfile.jsp" />
+	</definition>
+  
+
+
+
+
+
+
+
+
+</tiles-definitions>

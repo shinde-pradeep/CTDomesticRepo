@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation"
+		value="false" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.custom.i18n.resources"
+		value="ApplicationResources" />
+	<include file="struts-default.xml" />
+	<package name="default" extends="struts-default" namespace="/">
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+		
+		<interceptors>
+				<interceptor name="logging" class="com.kjnext.interceptor.LoggingInterceptor"></interceptor>
+				<interceptor name="authentication" class="com.kjnext.interceptor.AuthenticationInterceptor"></interceptor>		
+					<interceptor-stack name="commonCompulsaryStack">
+						<interceptor-ref name="logging"></interceptor-ref>
+						<interceptor-ref name="authentication"></interceptor-ref>
+						<interceptor-ref name="defaultStack"></interceptor-ref>
+					</interceptor-stack>
+		</interceptors>
+		
+	 	<global-results>
+			<result name="login">/common/Login.jsp</result>
+			<result name="unauthorized">/common/unauthorized.jsp</result>
+			<result name="error">/common/error.jsp</result>
+			<result name="applicationError">/common/applicationError.jsp</result>
+		</global-results>
+		
+		
+		<action name="login" class="com.kjnext.action.LoginAction" method="loginCheck">
+			<interceptor-ref name="logging"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="admin" type="tiles">/adminHome.tiles</result>
+			<result name="traders" type="tiles">/tradersHome.tiles</result>
+			<result name="producers" type="tiles">/producersHome.tiles</result>
+			<result name="error">Login.jsp</result>
+		</action>
+		<action name="guestOffers" class="com.kjnext.action.LoginAction" method="loadGuestOffers">
+			<result name="success" type="tiles">/GuestOffers.tiles</result>
+			<result name="input" type="tiles">/GuestOffers.tiles</result>
+		</action>
+		
+		<action name="forgetPass" class="com.kjnext.action.LoginAction" method="aa">
+		<result name="success">/admin/emailId.jsp</result>
+		</action>
+		<action name="checkEmailId" class="com.kjnext.action.LoginAction" method="checkEmail">
+		<result name="success">/admin/checkEmailId.jsp</result>
+		<result name="error">/admin/emailId.jsp</result>
+		</action>
+		<!--  /******Register Page*****/-->
+		<action name="addRegisterUser" class="com.kjnext.action.CompanyRegisterAction" method="addCompanyInput">
+			<result name="success">/common/insertCompanyRegister.jsp</result>
+		</action>
+		
+		<action name="addRegisterSave" class="com.kjnext.action.CompanyRegisterAction" method="addCompany">
+			<result name="success">/common/success.jsp</result>
+		</action>
+		<action name="newlogin" class="com.kjnext.action.LoginAction" method="newLogin">
+			<result name="success">/common/Login.jsp</result>
+		</action>
+		
+		<!--   /******Register Page*****/ -->
+		<action name="customer" class="com.kjnext.action.CustomerAction">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/customer.success.tiles</result>
+			<result name="input" type="tiles">/traders.tiles</result>
+		</action>
+			<!-- ****Transaction Start *** -->
+		<action name="traders-Transaction" class="com.kjnext.action.MyTransactionAction" method="loadTraceability">
+			<!--<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			--><result name="success" type="tiles">/transaction.tiles</result>
+			<result name="input" type="tiles">/transaction.tiles</result>
+		</action>
+		<action name="tradersAchivedTransaction" class="com.kjnext.action.MyTransactionAction" method="loadAchivedTransaction">
+			<!--<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			--><result name="success" type="tiles">/transaction.tiles</result>
+			<result name="input" type="tiles">/transaction.tiles</result>
+		</action>
+		<action name="tradersTransactionReport" class="com.kjnext.action.MyTransactionAction" method="loadTransactionReport">
+			<!--<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			--><result name="success" type="tiles">/tradersTransactionReport.tiles</result>
+			<result name="input" type="tiles">/tradersTransactionReport.tiles</result>
+		</action>
+		<action name="traders-Transaction1" class="com.kjnext.action.MyTransactionAction" method="loadTraceability1">
+			<!--<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			--><result name="success" type="tiles">/transaction1.tiles</result>
+			<result name="input" type="tiles">/transaction1.tiles</result>
+		</action>
+		
+		<action name="achieved-Transaction1" class="com.kjnext.action.MyTransactionAction" method="loadAcievedTransaction">
+			<!--<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			--><result name="success" type="tiles">/transaction2.tiles</result>
+			<result name="input" type="tiles">/transaction2.tiles</result>
+		</action>
+		<action name="completeTransaction" class="com.kjnext.action.MyTransactionAction" method="complete">
+			<!--<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			--><result name="success" type="tiles">/transaction1.tiles</result>
+			<result name="input" type="tiles">/transaction1.tiles</result>
+		</action>
+		<action name="addTransactionInput" class="com.kjnext.action.MyTransactionAction" method="addTraceabilityInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainTransaction.tiles</result>
+		</action>
+		<action name="addTransaction" class="com.kjnext.action.MyTransactionAction" method="addTraceability">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainTransaction.tiles</result>
+			<result name="input" type="tiles" >/mentainTransaction.tiles</result>
+		</action>
+		<action name="updateTransactionInput" class="com.kjnext.action.MyTransactionAction" method="updateTraceabilityInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/updateTransaction.tiles</result>
+			<result name="input" type="tiles" >/updateTransaction.tiles</result>
+		</action>
+		
+		<action name="updateTransaction" class="com.kjnext.action.MyTransactionAction" method="updateTraceability">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainTransaction.tiles</result>
+			<result name="input" type="tiles" >/mentainTransaction.tiles</result>
+		</action>
+		<action name="deActiveTransaction" class="com.kjnext.action.MyTransactionAction" method="deActiveTransaction">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/transaction.tiles</result>
+			
+		</action>
+		<!-- Transaction End  -->
+		<!-- ****Trader User Start *** -->
+		<action name="traders-form" class="com.kjnext.action.TraderUserAction" method="loadTrader">
+			<!--<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			--><result name="success" type="tiles">/traders.tiles</result>
+			<result name="input" type="tiles">/traders.tiles</result>
+		</action>
+		<action name="traderPriamryUser" class="com.kjnext.action.TraderUserAction" method="setPriamryUser">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/traders.tiles</result>
+		</action>
+		<action name="addTraderInput" class="com.kjnext.action.TraderUserAction" method="addTraderInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainTraderUser.tiles</result>
+		</action>
+		<action name="addAdminInput" class="com.kjnext.action.TraderUserAction" method="addTraderInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainAdminUser.tiles</result>
+		</action>
+		<action name="addTrader" class="com.kjnext.action.TraderUserAction" method="addTrader">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainTraderUser.tiles</result>
+		</action>
+		<action name="addAdmin" class="com.kjnext.action.TraderUserAction" method="addTrader">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainAdminUser.tiles</result>
+		</action>
+	
+		<action name="updateTraderInput" class="com.kjnext.action.TraderUserAction" method="updateTraderInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainTraderUser.tiles</result>
+		</action>
+		
+		<action name="updateTrader" class="com.kjnext.action.TraderUserAction" method="updateTrader">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainTraderUser.tiles</result>
+		</action>
+		<action name="updateAdmin" class="com.kjnext.action.TraderUserAction" method="updateTrader">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainAdminUser.tiles</result>
+		</action>
+				
+		<action name="deActiveTrader" class="com.kjnext.action.TraderUserAction" method="deActiveTrader">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/traders.tiles</result>
+		</action>
+		<!-- ****Trader User End *** -->
+		
+		<!-- ****Producer User Start *** -->
+		<action name="producersUser" class="com.kjnext.action.ParticipatingProducerAction" method="getProducerUser">
+			<!--<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			--><result name="success" type="tiles">/producersUser.tiles</result>
+			<result name="input" type="tiles">/producersUser.tiles</result>
+		</action>
+		<action name="producerReport" class="com.kjnext.action.ParticipatingProducerAction"  method="ProducersReport">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/producerReport.tiles</result>
+		</action> 
+		<!-- <action name="participatingProducer" class="com.kjnext.action.ProducerMasterAction" method="loadProducer">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/participatingProducer.tiles</result>
+		</action>  --> 
+		<action name="transactionReport" class="com.kjnext.action.MyTransactionAction" method="loadReport">
+			<!--<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			--><result name="success" type="tiles">/transactionReport.tiles</result>
+			<result name="input" type="tiles">/transactionReport.tiles</result>
+		</action>
+		<action name="uploadProducerExcel" class="com.kjnext.action.ProducerMasterAction" method="uploadExcel">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/uploadProducerExcel.tiles</result>
+		</action>
+		<action name="uploadFarmExcel" class="com.kjnext.action.ProducerMasterAction" method="uploadExcel">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/uploadFarmExcel.tiles</result>
+		</action>
+		<action name="uploadProducer" class="com.kjnext.action.ProducerMasterAction" method="insertExcelData1">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/uploadProducerExcel.tiles</result>
+		</action>
+		<action name="uploadFarm" class="com.kjnext.action.ProducerMasterAction" method="insertExcelData">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/uploadFarmExcel.tiles</result>
+		</action>
+		
+		<action name="addProducerInput" class="com.kjnext.action.TraderUserAction" method="addTraderInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainProducerUser.tiles</result>
+		</action>
+		<action name="addProducer" class="com.kjnext.action.TraderUserAction" method="addTrader">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainProducerUser.tiles</result>
+		</action>
+		<action name="updateProducerInput" class="com.kjnext.action.TraderUserAction" method="updateTraderInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainProducerUser.tiles</result>
+		</action>
+		
+		<action name="updateProducer" class="com.kjnext.action.TraderUserAction" method="updateTrader">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainProducerUser.tiles</result>
+		</action>
+		
+		<action name="deActiveProducer" class="com.kjnext.action.TraderUserAction" method="deActiveProducer">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/producers.tiles</result>
+		</action>
+		<!-- ****Producer User End *** -->
+		<!-- ****Producer Transaction Start *** -->
+		<action name="producersTransaction" class="com.kjnext.action.MyTransactionAction" method="loadTraceability">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/producerTransaction.tiles</result>
+			<result name="input" type="tiles">/producerTransaction.tiles</result>
+		</action>
+		<action name="transactionProducers" class="com.kjnext.action.ParticipatingProducerAction" method="ProducersTransaction">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/transactionProducer.tiles</result>
+			<result name="input" type="tiles">/transactionProducer.tiles</result>
+		</action>
+		<!-- ****Producer Transaction End *** -->
+		
+			<!-- ****Producer Offer Start *** -->
+		<action name="producersOffer" class="com.kjnext.action.TraderOffersAction" method="loadOffers">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/producersOffer.tiles</result>
+			<result name="input" type="tiles">/producersOffer.tiles</result>
+		</action>
+		<action name="addProducerOfferInput" class="com.kjnext.action.TraderOffersAction" method="addOfferInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainProducerOffer.tiles</result>
+		</action>
+		<action name="addProducerOffers" class="com.kjnext.action.TraderOffersAction" method="addOffers">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainProducerOffer.tiles</result>
+		</action>
+		<action name="updateProducerOfferInput" class="com.kjnext.action.TraderOffersAction" method="updateOfferInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainProducerOffer.tiles</result>
+		</action>
+		<action name="updateProducerOffers" class="com.kjnext.action.TraderOffersAction" method="updateOffer">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainProducerOffer.tiles</result>
+		</action>
+		<!-- ****Producer Offer End *** -->
+		<!--   &&&&&& Traders Offers Start &&&&&&& -->
+		
+		<action name="tradersOffer" class="com.kjnext.action.TraderOffersAction" method="loadOffers">
+			<!--<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			--><result name="success" type="tiles">/offers.tiles</result>
+			<result name="input" type="tiles">/offers.tiles</result>
+		</action>
+		
+		<action name="addOfferInput" class="com.kjnext.action.TraderOffersAction" method="addOfferInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainTraderOffers.tiles</result>
+		</action>
+		<action name="addTraderOffers" class="com.kjnext.action.TraderOffersAction" method="addOffers">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainTraderOffers.tiles</result>
+		</action>
+		<action name="updateOfferInput" class="com.kjnext.action.TraderOffersAction" method="updateOfferInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainTraderOffers.tiles</result>
+		</action>
+		<action name="updateTraderOffers" class="com.kjnext.action.TraderOffersAction" method="updateOffer">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainTraderOffers.tiles</result>
+		</action>
+		<!--   &&&&&& Traders Offers End &&&&&&& -->
+		
+		<!-- *******ParticipatingCompany Start***** -->
+		<action name="participatingCompany" class="com.kjnext.action.ParticipatingCompanyAction"  method="loadCompany">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/participatingCompany.tiles</result>
+		</action>
+		<action name="participatingCompanyReport" class="com.kjnext.action.ParticipatingCompanyAction"  method="loadCompanyReport">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/participatingCompanyReport.tiles</result>
+		</action>
+		
+		<action name="addCompanyInput" class="com.kjnext.action.ParticipatingCompanyAction" method="addCompanyInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainparticipatingCompany.tiles</result>
+		</action>
+		<action name="addCompany" class="com.kjnext.action.ParticipatingCompanyAction" method="addCompany">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainparticipatingCompany.tiles</result>
+		</action>
+		<action name="updateCompanyInput" class="com.kjnext.action.ParticipatingCompanyAction" method="updateCompanyInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainparticipatingCompany.tiles</result>
+		</action>
+		
+		<action name="sendNotificationInput" class="com.kjnext.action.AllUserAction" method="SendUserNotificationInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/SendNotification.tiles</result>
+		</action>
+		
+		<action name="updateCompany" class="com.kjnext.action.ParticipatingCompanyAction" method="updateCompany">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainparticipatingCompany.tiles</result>
+		</action>
+		
+		<action name="deActiveCompany" class="com.kjnext.action.ParticipatingCompanyAction" method="deActiveCompany">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/participatingCompany.tiles</result>
+		</action>
+		<action name="ActiveCompany" class="com.kjnext.action.ParticipatingCompanyAction" method="ActiveCompany">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/participatingCompany.tiles</result>
+		</action>
+		<!-- *******ParticipatingCompany End***** -->
+		<!--<action name="producers-form">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/producers.tiles</result>
+		</action>
+		
+		-->
+		<action name="alluser" class="com.kjnext.action.AllUserAction" method="loadUsers">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="admin" type="tiles">/alluser.tiles</result>
+			<result name="user" type="tiles">/alluser1.tiles</result>
+		</action>
+		<action name="DeactiveUser" class="com.kjnext.action.AllUserAction" method="deActiveUser">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/alluser.tiles</result>
+		</action>
+		<action name="adminPriamryUser" class="com.kjnext.action.AllUserAction" method="setPriamryUser">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/alluser.tiles</result>
+		</action>
+		<action name="ActiveUser" class="com.kjnext.action.AllUserAction" method="ActiveUser">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/alluser.tiles</result>
+		</action>
+		 <action name="participatingProducer" class="com.kjnext.action.ParticipatingProducerAction"  method="loadProducers">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/participatingProducer.tiles</result>
+		</action> 
+		  
+		<action name="deActiveProducer1" class="com.kjnext.action.ParticipatingProducerAction" method="deActiveProducer">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/participatingProducer.tiles</result>
+		</action>
+		<action name="ActiveProducer1" class="com.kjnext.action.ParticipatingProducerAction" method="ActiveProducer">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/participatingProducer.tiles</result>
+		</action>	
+		<action name="managemaster" class="com.kjnext.action.ManageMasterAction" method="loadMenu">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/managemaster.tiles</result>
+		</action>
+		
+		
+		<action name="loadProduct" class="com.kjnext.action.ManageMasterAction" method="loadProducts">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/loadProduct.tiles</result>
+		<!--<result name="success" >/admin/manageProducts.jsp</result>
+		-->
+		</action>
+		
+		<action name="addProductInput" class="com.kjnext.action.ManageMasterAction" method="addProductInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainProduct.tiles</result>
+		</action>
+		
+		<action name="updateProductInput" class="com.kjnext.action.ManageMasterAction" method="updateProductInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainProduct.tiles</result>
+		</action>
+		
+		<action name="deleteProcess" class="com.kjnext.action.ManageMasterAction" method="deleteProduct">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/loadProduct.tiles</result>
+		</action><!--
+		
+		<action name="loadProductJemesa" class="com.kjnext.action.ManageMasterAction" method="loadProducts">
+			<result name="success" type="tiles" >/loadProductJessa.tiles</result>
+		</action>
+		
+		-->
+		<action name="addProduct" class="com.kjnext.action.ManageMasterAction" method="addProduct">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainProduct.tiles</result>
+		</action>
+		
+		<action name="updateProduct" class="com.kjnext.action.ManageMasterAction" method="updateProduct">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainProduct.tiles</result>
+		</action>
+		
+		
+		<!--  ***********Region*********** -->
+		<action name="loadGrowingRegions" class="com.kjnext.action.SellingRegionAction" method="getRegion">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/loadRegion.tiles</result>
+			<result name="input" type="tiles">/loadRegion.tiles</result>
+		</action>
+		<action name="addRegionInput" class="com.kjnext.action.SellingRegionAction" method="addRegionInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainRegion.tiles</result>
+		</action>
+		<action name="addRegion" class="com.kjnext.action.SellingRegionAction" method="addRegion">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainRegion.tiles</result>
+		</action>
+		<action name="updateRegionInput" class="com.kjnext.action.SellingRegionAction" method="updateRegionInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainRegion.tiles</result>
+		</action>
+		
+		<action name="updateRegion" class="com.kjnext.action.SellingRegionAction" method="updateRegion">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainRegion.tiles</result>
+		</action>
+		
+		<action name="deActiveRegion" class="com.kjnext.action.SellingRegionAction" method="deActiveRegion">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/loadRegion.tiles</result>
+		</action>
+		<!--  Region End -->
+		<!-- State Start -->
+		 
+		<action name="loadCountry" class="com.kjnext.action.StateAction" method="loadState">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/loadState.tiles</result>
+			<result name="input" type="tiles">/loadState.tiles</result>
+		</action>
+		<action name="addStateInput" class="com.kjnext.action.StateAction" method="addStateInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainState.tiles</result>
+		</action>
+		<action name="addState" class="com.kjnext.action.StateAction" method="addState">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainState.tiles</result>
+		</action>
+		<action name="updateStateInput" class="com.kjnext.action.StateAction" method="updateStateInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainState.tiles</result>
+		</action>
+		
+		<action name="updateState" class="com.kjnext.action.StateAction" method="updateState">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainState.tiles</result>
+		</action>
+		
+		<action name="deActiveState" class="com.kjnext.action.StateAction" method="deActiveState">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/loadState.tiles</result>
+		</action>
+		<!-- State End -->
+		<!--  Register Start -->
+			<action name="loadRegisters" class="com.kjnext.action.CompanyRegisterAction" method="loadCompany">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/loadRegisters.tiles</result>
+			<result name="input" type="tiles">/loadRegisters.tiles</result>
+		</action>
+		<action name="addRegisterInput" class="com.kjnext.action.CompanyRegisterAction" method="addCompanyInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainRegister.tiles</result>
+		</action>
+		
+		<action name="addRegister" class="com.kjnext.action.CompanyRegisterAction" method="addCompany">
+			<!--<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			--><result name="success" type="tiles" >/mentainRegister.tiles</result>
+		</action>
+		<action name="updateRegisterInput" class="com.kjnext.action.CompanyRegisterAction" method="updateCompanyInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainRegister.tiles</result>
+		</action>
+		
+		<action name="updateRegister" class="com.kjnext.action.CompanyRegisterAction" method="updateCompany">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainRegister.tiles</result>
+		</action>
+		
+		
+		<!--  Register End  -->
+		<!--  ***********loadDestinationPorts*********** -->
+		
+		<action name="loadPorts" class="com.kjnext.action.DestinationPortAction" method="loadDestinationPort">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/loadDestinationPort.tiles</result>
+			<result name="input" type="tiles">/loadDestinationPort.tiles</result>
+		</action>
+		<action name="portsLoad" class="com.kjnext.action.DestinationPortAction" method="loadPort">
+			  <interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/loadPort.tiles</result>
+			<result name="input" type="tiles">/loadPort.tiles</result>
+		</action>
+		
+		<action name="addDestinationPortInput" class="com.kjnext.action.DestinationPortAction" method="addDestinationPortInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainDestinationPort.tiles</result>
+		</action>
+		
+		<action name="addDestinationPort" class="com.kjnext.action.DestinationPortAction" method="addDestinationPort">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainDestinationPort.tiles</result>
+		</action>
+		
+		<action name="updateDestinationPortInput" class="com.kjnext.action.DestinationPortAction" method="updateDestinationPortInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainDestinationPort.tiles</result>
+		</action>
+		
+		<action name="updateDestinationPort" class="com.kjnext.action.DestinationPortAction" method="updateDestinationPort">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainDestinationPort.tiles</result>
+		</action>
+		
+		<action name="deActivePort" class="com.kjnext.action.DestinationPortAction" method="deActivePort">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/loadDestinationPort.tiles</result>
+		</action>
+		
+	<!--  ***********loadOrigin*********** -->	
+	
+		<action name="loadOrigin" class="com.kjnext.action.OriginAction" method="loadOrigin">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/loadOrigin.tiles</result>
+			<result name="input" type="tiles">/loadOrigin.tiles</result>
+		</action>
+		
+		<action name="addOriginInput" class="com.kjnext.action.OriginAction" method="addOriginInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainOrigin.tiles</result>
+		</action>
+		
+		<action name="addOrigin" class="com.kjnext.action.OriginAction" method="addOrigin">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainOrigin.tiles</result>
+		</action>
+		
+		<action name="updateOriginInput" class="com.kjnext.action.OriginAction" method="updateOriginInput">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/mentainOrigin.tiles</result>
+		</action>
+		
+		<action name="updateOrigin" class="com.kjnext.action.OriginAction" method="updateOrigin">
+			<interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles" >/mentainOrigin.tiles</result>
+		</action>
+			
+	  <action name="deActiveOrigin" class="com.kjnext.action.OriginAction" method="deActiveOrigin">
+		    <interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success" type="tiles">/loadOrigin.tiles</result>
+	  </action>	
+	  
+	  <action name="logout" class="com.kjnext.action.LoginAction" method="userLogOff">
+		    <interceptor-ref name="commonCompulsaryStack"></interceptor-ref>
+			<result name="success">Login.jsp</result>
+	  </action>
+	  
+	  <!--  My profile company form -->
+	  
+	  <action name="tradersProfile" class="com.kjnext.action.MyProfileAction" method="loadProfileData">
+		   
+			<result name="success" type="tiles">/myProfile.tiles</result>
+	  </action>
+	   <action name="producerProfile" class="com.kjnext.action.MyProfileAction" method="loadProducerProfileData">
+		   
+			<result name="success" type="tiles">/traderProfile.tiles</result>
+	  </action>
+	  
+  
+  </package>
+</struts>
